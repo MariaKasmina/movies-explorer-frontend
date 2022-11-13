@@ -1,0 +1,27 @@
+.login-form__title {
+    margin-top: 38px;
+    margin-bottom: 15px;
+}
+
+.login__form {
+    margin-top: 70px;
+    width: 396px;
+}
+
+@media screen and (max-width: 800px) {
+    .form__login {
+        margin-top: 231px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .login-form__title {
+        margin-top: 43px;
+    }
+
+    .login__form {
+        margin-top: 58px;
+        width: 254px;
+        align-items: center;
+    }
+}

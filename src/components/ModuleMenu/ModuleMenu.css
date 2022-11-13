@@ -1,0 +1,95 @@
+#modulemenu {
+  background: rgba(0,0,0,.5);
+  bottom: 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+  left: 0;
+  opacity: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: visibility .3s,opacity .3s linear;
+  visibility: hidden;
+}
+
+#modulemenu:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.module-menu__container {
+  background: #fff;
+  cursor: auto;
+  display: flex;
+  flex-direction: column;
+  min-width: 240px;
+  position: relative;
+  width: 520px;
+}
+
+.module-menu__close-button {
+  background-image: url(../../images/close-icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: white;
+  cursor: pointer;
+  height: 22px;
+  width: 22px;
+  border: none;
+  top: 26px;
+  right: 26px;
+  position: absolute;
+}
+
+.menu__links {
+  font-family: Inter, sans-serif;
+  display: flex;
+  margin-top: 161px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-item {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  margin-bottom: 28px;
+}
+
+.module-menu__account-button {
+  position: absolute;
+  bottom: 90px;
+  right: 210px;
+}
+
+.menu-item-link {
+  text-decoration: none;
+  color: black;
+}
+
+@media screen and (max-width: 510px) {
+  .module-menu__container {
+    width: 320px;
+  }
+
+  .menu-item {
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 24px;
+  }
+
+  .module-menu__account-button {
+    bottom: 66px;
+    right: 110px;
+  }
+
+  .module-menu__close-button {
+    top: 18px;
+    right: 17px;
+  }
+
+  .menu__links {
+    margin-top: 146px;
+  }
+}

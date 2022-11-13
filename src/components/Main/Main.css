@@ -1,0 +1,30 @@
+.section_paddings {
+  min-height: 520px;
+  padding-left: 70px;
+  padding-top: 89px;
+  padding-right: 70px;
+}
+
+.main__navtab-container {
+  padding-bottom: 13px;
+}
+
+@media screen and (max-width: 770px){
+  .section_paddings {
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 68px;
+  }
+}
+
+@media screen and (max-width: 430px){
+  .section_paddings {
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-top: 53px;
+  }
+
+  .main__navtab-container{
+    padding-right: 0px;
+  }
+}

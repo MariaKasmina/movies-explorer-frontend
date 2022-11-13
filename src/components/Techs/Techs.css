@@ -1,0 +1,107 @@
+.techs__container {
+  background-color: rgba(245, 245, 245, 1);
+  padding-top: 78px;
+  max-height: 680px;
+  padding-bottom: 25px;
+}
+
+.techs__content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.techs__content-title {
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  letter-spacing: -2px;
+  text-align: center;
+  padding-top: 16px;
+  margin-bottom: 14px;
+}
+
+.techs__content-text {
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  max-width: 500px;
+  text-align: center;
+  letter-spacing: -0.75px;
+}
+
+.techs__techs {
+  display: grid;
+  list-style-type: none;
+  padding-top: 70px;
+  grid-template-columns: repeat(7, 90px);
+  column-gap: 10px;
+  padding-left: 0;
+}
+
+.techs__tech {
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  max-width: 90px;
+  text-align: center;
+  padding-top: 21px;
+  padding-bottom: 21px;
+  background-color: rgba(232, 232, 232, 1);
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 770px){
+  .techs__container {
+    padding-top: 65px;
+    min-height: 474px;
+  }
+  .techs__content-title {
+    padding-top: 8px;
+    margin-bottom: 7px;
+  }
+  .techs__tech {
+    font-size: 12px;
+    line-height: 15px;
+    max-width: 84px;
+  }
+  .techs__techs {
+    grid-template-columns: repeat(7, 84px);
+    padding-top: 50px;
+  }
+}
+
+@media screen and (max-width: 670px){
+  .techs__techs {
+    grid-template-columns: repeat(2, 84px);
+    margin: auto;
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width: 430px){
+  .techs__container {
+    background-color: white;
+    padding-top: 114px;
+    padding-bottom: 72px;
+  }
+  .techs__content-title {
+    font-size: 30px;
+    line-height: 37px;
+    padding-top: 12px;
+    margin-bottom: 12px;
+    letter-spacing: -1px;
+  }
+  .techs__content-text {
+    font-size: 11px;
+    line-height: 16px;
+    max-width: 268px;
+    letter-spacing: -0.4px;
+  }
+  .techs__techs {
+    padding-top: 38px;
+  }
+}

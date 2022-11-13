@@ -1,0 +1,80 @@
+.navigation__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Inter, sans-serif;
+  padding-bottom: 3px;
+}
+
+.navigation__link {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  margin-right: 15px;
+  text-decoration: none;
+  color: black;
+}
+
+.navigation__link:first-child {
+  font-weight: 500;
+}
+
+.navigation__account-button {
+  background-image: url(../../images/profile-icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: white;
+  border: none;
+  width: 100px;
+  height: 32px;
+  cursor: pointer;
+  margin-right: 38px;
+}
+
+.navigation__menu-button {
+  background-image: url(../../images/menu-icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: white;
+  border: none;
+  width: 44px;
+  height: 41px;
+  display: none;
+  cursor: pointer;
+}
+
+.navigation__menu-button-link {
+  display: none;
+}
+
+@media screen and (max-width: 900px) {
+  .navigation__container {
+    visibility: hidden;
+  }
+
+  .navigation__menu-button {
+    display: block;
+    visibility: visible;
+  }
+
+  .navigation__menu-button-link {
+    display: block;
+    visibility: visible;
+  }
+
+  .navigation__links {
+    display: none;
+  }
+
+  .navigation__account-button{
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .navigation__menu-button {
+    width: 35px;
+    background-position: bottom;
+    background-size: 40px 43px;
+  }
+}

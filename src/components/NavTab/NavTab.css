@@ -1,0 +1,46 @@
+.navtab__container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding-top: 18px;
+  margin-top: 0;
+  padding-bottom: 13px;
+}
+
+.navtab__color-white {
+  background-color: white;
+}
+
+.navtab__authorized-grid {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  column-gap: 44px;
+  margin-right: 31px;
+}
+
+.navtab__logo {
+  margin-left: 70px;
+  object-fit: contain;
+  grid-area: logo;
+}
+
+@media screen and (max-width: 770px) {
+  .navtab__logo {
+    margin-left: 30px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .navtab__authorized-grid {
+    padding-right: 16px;
+    margin-right: 0;
+    column-gap: 0;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .navtab__logo {
+    margin-left: 14px;
+  }
+}
+

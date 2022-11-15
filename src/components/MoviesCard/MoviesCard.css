@@ -1,0 +1,121 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  max-width: 364px;
+  margin: 0;
+  position: relative;
+  font-family: Inter, sans-serif;
+}
+
+.card:hover .card__cross {
+  visibility: visible;
+}
+
+.card__image {
+  max-width: 364px;
+  border-radius: 6px 6px 0 0;
+  cursor: pointer;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.card__caption {
+  color: black;
+  background-color: white;
+  border-radius: 0 0 6px 6px;
+  max-height: 78px;
+  display: grid;
+  grid-template-areas:
+          "name heart"
+          "time .";
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  padding-left: 16px;
+  padding-right: 16px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.card__caption-text {
+  grid-area: name;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  margin-top: 14px;
+}
+
+.card__time {
+  grid-area: time;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 14px;
+  color: rgba(160, 160, 160, 1);
+  margin-top: 6px;
+  margin-bottom: 14px;
+}
+
+.card__heart {
+  grid-area: heart;
+  background-image: url(../../images/heart-active-icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  background-color: white;
+  width: 30px;
+  height: 30px;
+  justify-self: end;
+  cursor: pointer;
+}
+
+.unliked__heart {
+  grid-area: heart;
+  background-image: url(../../images/unliked-heart-icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  background-color: white;
+  width: 30px;
+  height: 30px;
+  justify-self: end;
+  cursor: pointer;
+}
+
+.card__cross {
+  grid-area: heart;
+  background-image: url(../../images/cross-icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  background-color: white;
+  width: 30px;
+  height: 30px;
+  justify-self: end;
+  visibility: hidden;
+  cursor: pointer;
+  transition: visibility 0.5s linear;
+}
+
+@media screen and (max-width: 900px){
+  .card__caption {
+    max-height: 72px;
+    padding-left: 14px;
+  }
+  .card__time {
+    margin-top: 3px;
+  }
+}
+
+@media screen and (max-width: 900px){
+  .card__caption-text {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .card__time {
+    font-size: 10px;
+    line-height: 12px;
+  }
+
+  .card__caption {
+    padding-right: 9px;
+  }
+}

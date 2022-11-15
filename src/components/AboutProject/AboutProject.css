@@ -1,0 +1,121 @@
+.about-project__title {
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  letter-spacing: -1px;
+  border-bottom: 1px solid rgba(0, 0, 0, 1);
+  padding-bottom: 23px;
+}
+
+.notes__container {
+  display: grid;
+  margin-top: 50px;
+  column-gap: 37px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.note {
+  max-width: 550px;
+}
+
+.note__title {
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.75px;
+}
+
+.note__content {
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  padding-top: 5px;
+}
+
+.diploma__stages {
+  display: grid;
+  grid-template-columns: 228px 1fr;
+  margin-top: 95px;
+}
+
+.diploma__stage {
+  text-align: center;
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0;
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+
+.diploma__stage-1 {
+  background-color: rgba(43, 224, 128, 1);
+}
+
+.diploma__stage-2 {
+  background-color: rgba(242, 242, 242, 1);
+}
+
+.diploma__stages-descriptions {
+  margin-top: 4px;
+  color: rgba(160, 160, 160, 1);
+}
+
+@media screen and (max-width: 770px){
+  .note__content {
+    padding-top: 2px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .note {
+    max-width: 321px;
+  }
+  .diploma__stages {
+    grid-template-columns: 140px 1fr;
+    margin-top: 79px;
+  }
+  .diploma__stages-descriptions {
+    margin-top: 2px;
+  }
+  .notes__container {
+    column-gap: 28px;
+  }
+}
+
+@media screen and (max-width: 430px){
+  .about-project__title {
+    font-size: 18px;
+    line-height: 22px;
+    padding-bottom: 26px;
+  }
+  .notes__container {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 29px;
+    margin-top: 44px;
+  }
+  .note__title {
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 12px;
+  }
+  .note__content {
+    font-size: 11px;
+    line-height: 16px;
+  }
+  .diploma__stages {
+    grid-template-columns: 99px 1fr;
+    margin-top: 52px;
+  }
+  .diploma__stage {
+    font-size: 11px;
+    line-height: 14px;
+  }
+  .diploma__stages-descriptions {
+    margin-top: 2px;
+  }
+}

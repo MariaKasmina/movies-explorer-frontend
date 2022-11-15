@@ -1,0 +1,21 @@
+.register__form {
+    margin-top: 68px;
+}
+
+.register-form__content {
+    margin-bottom: 150px;
+}
+
+@media screen and (max-width: 800px) {
+    .register__form {
+        margin-top: 231px;
+    }
+}
+
+
+@media screen and (max-width: 450px) {
+    .register-form__content {
+        margin-top: 42px;
+        margin-bottom: 240px;
+    }
+}

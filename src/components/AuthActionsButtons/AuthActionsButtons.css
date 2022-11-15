@@ -1,0 +1,53 @@
+.auth-buttons__container{
+  display: flex;
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  margin-right: 70px;
+}
+
+.auth-buttons__sign-up-btn{
+  background: transparent;
+  margin-right: 31px;
+  color: white;
+  text-decoration: none;
+  padding-top: 11px;
+}
+
+.auth-buttons__sign-in-btn{
+  background-color: rgba(43, 224, 128, 1);
+  border-radius: 3px;
+  padding-right: 20px;
+  padding-left: 20px;
+  max-height: 23px;
+  margin-top: 3px;
+  text-decoration: none;
+  color: black;
+  padding-top: 8px;
+}
+
+@media screen and (max-width: 770px) {
+  .auth-buttons__container {
+    margin-right: 30px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .auth-buttons__container {
+    margin-right: 14px;
+    font-size: 10px;
+    line-height: 16px;
+  }
+
+  .auth-buttons__sign-in-btn {
+    padding-right: 12px;
+    padding-left: 12px;
+    margin-top: 7px;
+    padding-top: 3px;
+  }
+
+  .auth-buttons__sign-up-btn {
+    margin-right: 14px;
+  }
+}

@@ -1,17 +1,23 @@
 import Logo from "../Logo/Logo";
 import {useState} from "react";
 import {checkValidity} from "../Form/FormValidation";
+import TextError from "../Error/TextError";
 
-function Login({onHandleSubmit}) {
+function Login({onHandleSubmit, onErr}) {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errorVisibility, setErrorVisibility] = useState(false);
 
     const emailPattern = '[a-z0-9]+@[a-z]+\\.[a-z]{2,3}';
 
     function handleSubmit(e){
+        setErrorVisibility(false);
         e.preventDefault();
         onHandleSubmit(password, email);
+        if(onErr){
+            setErrorVisibility(true);
+        }
     }
 
     function handleChangeEmail(e) {
@@ -38,6 +44,7 @@ function Login({onHandleSubmit}) {
                     <span className='form__input-error login-password-input-error'/>
                 </div>
                 <button type='submit' className='form__submit-btn'>Войти</button>
+                <TextError text={'Произошла ошибка. Проверьте данные.'} visibility={errorVisibility}/>
                 <p className='form__text-under-form'>Ещё не зарегистрированы?<a href='/sign-up' className='form__text-under-form-link'>Регистрация</a></p>
             </form>
         </section>

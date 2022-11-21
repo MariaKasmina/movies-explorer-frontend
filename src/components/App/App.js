@@ -20,6 +20,7 @@ function App() {
     const [currentUser, setCurrentUser] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false); // признак авторизованности пользователя
     const [isSuccessRequest, setIsSuccessRequest] = useState(true);
+    const [isErrRequest, setIsErrRequest] = useState(false);
 
     useEffect(() => {
         if (isLoggedIn) {
@@ -46,8 +47,8 @@ function App() {
             setIsLoggedIn(true);
             localStorage.setItem('token', res.token);
             history.push("/movies");
-        }).catch((err) => {
-            console.log(err);
+        }).catch(() => {
+            setIsErrRequest(true);
         })
     }
 
@@ -57,11 +58,17 @@ function App() {
      * @param email
      */
     function handleRegister(name, password, email) {
-        register(name, password, email).then(() => {
-            setIsLoggedIn(true);
-            history.push("/movies");
-        }).catch((err) => {
-            console.log(err);
+        register(name, password, email).then((res) => {
+            console.log(res)
+            authorize(password, email).then((res) => {
+                localStorage.setItem('token', res.token);
+                setIsLoggedIn(true);
+                history.push("/movies");
+            }).catch(() => {
+                setIsErrRequest(true);
+            })
+        }).catch(() => {
+            setIsErrRequest(true);
         });
     }
 
@@ -90,8 +97,7 @@ function App() {
         updateUserInfo(name, email).then((res) => {
             setCurrentUser(res);
             setIsSuccessRequest(true);
-        }).catch((err) => {
-            console.log(err);
+        }).catch(() => {
             setIsSuccessRequest(false);
         })
     }
@@ -101,10 +107,10 @@ function App() {
             <div className="root__container">
                 <Switch>
                     <Route exact path="/sign-up">
-                        <Register onHandleSubmit={handleRegister}/>
+                        <Register onHandleSubmit={handleRegister} onErr={isErrRequest}/>
                     </Route>
                     <Route exact path="/sign-in">
-                        <Login onHandleSubmit={handleAuthorization}/>
+                        <Login onHandleSubmit={handleAuthorization} onErr={isErrRequest}/>
                     </Route>
                     <ProtectedRoute path="/movies" loggedIn={localStorage.getItem('token') ? true : isLoggedIn}>
                         <Movies path="/movies">

@@ -1,4 +1,4 @@
-const BASE_URL = 'https://api.bestmoviesexplorer.nomoredomains.sbs';
+const BASE_URL = 'http://localhost:3001';
 
 function checkResponse(response) {
     if (response.ok) {

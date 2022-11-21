@@ -1,19 +1,24 @@
 import Logo from "../Logo/Logo";
 import {useState} from "react";
 import {checkValidity} from "../Form/FormValidation";
+import TextError from "../Error/TextError";
 
-function Register({onHandleSubmit}) {
-
+function Register({onHandleSubmit, onErr}) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errorVisibility, setErrorVisibility] = useState(false);
 
     const namePattern = '[A-Za-zа-яА-Я\\-\\s]+';
     const emailPattern = '[a-z0-9]+@[a-z]+\\.[a-z]{2,3}';
 
     function handleSubmit(e){
+        setErrorVisibility(false);
         e.preventDefault();
         onHandleSubmit(name, password, email);
+        if(onErr){
+            setErrorVisibility(true);
+        }
     }
 
     function handleChangeEmail(e) {
@@ -48,6 +53,7 @@ function Register({onHandleSubmit}) {
                     <span className='form__input-error register-password-input-error'/>
                 </div>
                 <button type='submit' className='form__submit-btn'>Зарегистрироваться</button>
+                <TextError text={'Произошла ошибка. Проверьте данные.'} visibility={errorVisibility}/>
                 <p className='form__text-under-form'>Уже зарегистрированы?<a href='/sign-in' className='form__text-under-form-link'>Войти</a></p>
             </form>
         </section>

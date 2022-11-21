@@ -24,6 +24,7 @@
   border-top: white;
   border-right: white;
   border-left: white;
+  border-bottom: white;
   outline: none;
   font-size: 14px;
   line-height: 17px;
@@ -42,6 +43,11 @@
   line-height: 17px;
   height: 45px;
   width: 100%;
+}
+
+.form__submit-btn:disabled {
+  color: black;
+  background-color: #d0c1be;
 }
 
 .form__label {
@@ -73,6 +79,14 @@
   color: #FF6838;
   cursor: pointer;
   margin-left: 5px;
+}
+
+.form__input-error {
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  color: red;
+  text-align: center;
 }
 
 @media screen and (max-width: 450px){

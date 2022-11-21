@@ -2,6 +2,7 @@
   padding-top: 0;
   background-color: rgba(245, 245, 245, 1);
   min-height: 172px;
+  margin-top: auto;
 }
 
 .footer__sponsored-by {

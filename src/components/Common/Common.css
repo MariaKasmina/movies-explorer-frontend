@@ -1,0 +1,18 @@
+/**
+    Файл с общими селекторами и свойствами
+ */
+
+.non_visible {
+    visibility: hidden;
+}
+
+.non_display {
+    display: none;
+}
+
+input:disabled {
+    background-color: white;
+}
+
+input:focus::-webkit-input-placeholder { color:transparent; }
+

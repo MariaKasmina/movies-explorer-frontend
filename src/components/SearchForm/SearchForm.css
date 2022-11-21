@@ -59,9 +59,16 @@
   background-color: white;
 }
 
-.search__short-meter-tumbler:active {
+.search__short-meter-tumbler-active {
   cursor: pointer;
   background-image: url(../../images/smalltumb_off_icon.svg);
+  background-repeat: no-repeat;
+  background-position: top;
+  height: 24px;
+  width: 40px;
+  border: none;
+  padding: 0;
+  background-color: white;
 }
 
 .search__short-meter-tumbler-text {

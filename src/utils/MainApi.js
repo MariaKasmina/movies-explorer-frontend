@@ -1,4 +1,4 @@
-const BASE_URL = 'https://api.bestmoviesexplorer.nomoredomains.sbs/';
+const BASE_URL = 'https://api.bestmoviesexplorer.nomoredomains.sbs';
 
 
 export const getUserInfo = () => {

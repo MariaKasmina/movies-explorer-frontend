@@ -46,8 +46,8 @@ function App() {
             setIsLoggedIn(true);
             localStorage.setItem('token', res.token);
             history.push("/movies");
-        }).catch(() => {
-            // отобразить ошибку
+        }).catch((err) => {
+            console.log(err);
         })
     }
 
@@ -60,8 +60,8 @@ function App() {
         register(name, password, email).then(() => {
             setIsLoggedIn(true);
             history.push("/movies");
-        }).catch(() => {
-            // дописать отображение ошибки
+        }).catch((err) => {
+            console.log(err);
         });
     }
 

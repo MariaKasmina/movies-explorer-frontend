@@ -1,6 +1,7 @@
 /**
  * Функции для сортировки фильтров
  */
+import {constants} from "../../constants";
 
 export const moviesRuFilter = (movies, query) => {
     const map = [];
@@ -48,7 +49,7 @@ export const shortMeterFilter = (movies) => {
     const map = [];
     let indexArray = 0;
     movies.forEach((item) => {
-        if (item.duration <= 40) {
+        if (item.duration <= constants.SHORT_METER_DURATION) {
             map[indexArray] = item;
             indexArray += 1;
         }

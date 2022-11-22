@@ -25,7 +25,7 @@ function Movies({path, children}) {
         if (localStorage.getItem('collection') !== null) {
             setFilteredMovies(JSON.parse(localStorage.getItem('collection')));
         }
-    }, [])
+    }, []);
 
     useEffect(() => {
         // если в localstorage еще нет сохраненной сущности со списком всех фильмов, необходимо сделать такой запрос
@@ -33,7 +33,7 @@ function Movies({path, children}) {
             Promise.all([moviesApi.getAllMovies()]).then(([movies]) => {
                 setMovies(movies);
                 localStorage.setItem('allMovies', JSON.stringify(movies));
-            })
+            });
         }
     }, []);
 
@@ -41,10 +41,12 @@ function Movies({path, children}) {
         setFilteredMovies(moviesFilter(movies, searchQuery));
         localStorage.setItem('collection', JSON.stringify(filteredMovies));
         setIsShortMeterToLocalStorage();
+        setIsPreloaderVisible(false)
     }, [movies]);
 
     useEffect(() => {
-        if(localStorage.getItem('query')){
+        setIsPreloaderVisible(true);
+        if (localStorage.getItem('query')) {
             setFilteredMovies(moviesFilter((movies.length) ? movies : JSON.parse(localStorage.getItem('allMovies')), localStorage.getItem('query')));
         } else setFilteredMovies(moviesFilter(movies, searchQuery));
         localStorage.setItem('collection', JSON.stringify(filteredMovies));
@@ -56,6 +58,7 @@ function Movies({path, children}) {
 
     useEffect(() => {
         setShortMeterFilms(shortMeterFilter((localStorage.getItem('collection') ? JSON.parse(localStorage.getItem('collection')) : filteredMovies)));
+        setIsPreloaderVisible(false)
     }, [filteredMovies]);
 
     /**
@@ -72,8 +75,6 @@ function Movies({path, children}) {
             setShortMeterFilms(shortMeterFilter(filteredMovies));
             localStorage.setItem('shortmovies', JSON.stringify(shortMeterFilms));
         }
-        setIsPreloaderVisible(false);
-        setIsEmptySearchResult(false);
     }
 
     function setIsShortMeterToLocalStorage() {
@@ -93,15 +94,19 @@ function Movies({path, children}) {
                     handleValidSearch={handleSearch}
                     handleShortMeter={shortMeterHandle}
                     needToSaveQueryValue={true}
+                    needToSaveShortMovieTumblerState={true}
                 />
-                <MoviesCardList
-                    movies={isShortMeter ? shortMeterFilms : (localStorage.getItem('collection') ? JSON.parse(localStorage.getItem('collection')) : filteredMovies)}
-                    emptyResult={((!filteredMovies.length && !shortMeterFilms.length) && !isEmptySearchResult && !isPreloaderVisible)}
-                    isShortMeter={isShortMeter}
-                />
-                <Preloader
-                    isVisible={isPreloaderVisible}
-                />
+                {
+                    isPreloaderVisible ?
+                        <Preloader
+                            isVisible={isPreloaderVisible}
+                        /> :
+                        <MoviesCardList
+                            movies={isShortMeter ? shortMeterFilms : (localStorage.getItem('collection') ? JSON.parse(localStorage.getItem('collection')) : filteredMovies)}
+                            emptyResult={((!filteredMovies.length && !shortMeterFilms.length) && !isEmptySearchResult && !isPreloaderVisible)}
+                            isShortMeter={isShortMeter}
+                        />
+                }
             </div>
             <Footer/>
             <ModuleMenu page={path}/>

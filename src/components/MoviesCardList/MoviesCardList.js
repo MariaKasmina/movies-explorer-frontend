@@ -2,20 +2,12 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 
 import {useEffect, useState} from "react";
 import {removeMovieFromSavedMovies} from "../../utils/MainApi";
+import {constants} from "../../constants";
 
 function MoviesCardList({movies, emptyResult, onRemoveMovies}) {
     const [windowSize, setWindowSize] = useState(document.documentElement.clientWidth);
     const [visibleCards, setVisibleCards] = useState(movies);
     const [moreButtonVisibility, setMoreButtonVisibility] = useState(false);
-
-    // количество изначально представляемых результатов
-    const wide = 12;
-    const mid = 8;
-    const small = 5;
-    // количество единовременно добавляемых к отображению при нажатии на Ещё
-    const moreOnWide = 3;
-    const moreOnMid = 2;
-    const moreOnSmall = 2;
 
     useEffect(() => {
         setWindowSize(document.documentElement.clientWidth);
@@ -36,16 +28,16 @@ function MoviesCardList({movies, emptyResult, onRemoveMovies}) {
 
     function windowWidthHandler() {
         let cards = [];
-        if (windowSize >= 1280 || windowSize > 910) {
-            cards = movies.slice(0, wide);
+        if (windowSize >= 1280) {
+            cards = movies.slice(0, constants.MOVIES_ON_PAGE_COUNT.WIDE);
 
             if (cards.length < movies.length) {
                 setMoreButtonVisibility(true);
             } else setMoreButtonVisibility(false);
 
             setVisibleCards(cards);
-        } else if (windowSize >= 910 || windowSize >= 768) {
-            cards = movies.slice(0, mid);
+        } else if (windowSize <= 1279 || windowSize >= 768) {
+            cards = movies.slice(0, constants.MOVIES_ON_PAGE_COUNT.MID);
 
             if (cards.length < movies.length) {
                 setMoreButtonVisibility(true);
@@ -53,7 +45,7 @@ function MoviesCardList({movies, emptyResult, onRemoveMovies}) {
 
             setVisibleCards(cards);
         } else if (windowSize >= 770 || windowSize >= 320) {
-            cards = movies.slice(0, small);
+            cards = movies.slice(0, constants.MOVIES_ON_PAGE_COUNT.SMALL);
 
             if (cards.length < movies.length) {
                 setMoreButtonVisibility(true);
@@ -66,19 +58,19 @@ function MoviesCardList({movies, emptyResult, onRemoveMovies}) {
     function handleMoreButtonClick() {
         // когда нажали, должны в зависимости от текущей ширины экрана показать 3 или 2 новых карточки
         // когда длины массивов cards и movies сравняются или разница их блин будет <= шагу на текущей ширине экрана, кнопку необходимо убрать
-        if (windowSize >= 1280 || windowSize > 910) {
-            setVisibleCards(movies.slice(0, (visibleCards.length + moreOnWide)))
-            if (movies.length - visibleCards.length <= moreOnWide) {
+        if (windowSize >= 1280) {
+            setVisibleCards(movies.slice(0, (visibleCards.length + constants.MORE_MOVIE_ON_PAGE_COUNT.WIDE)))
+            if (movies.length - visibleCards.length <= constants.MORE_MOVIE_ON_PAGE_COUNT.WIDE) {
                 setMoreButtonVisibility(false);
             }
-        } else if (windowSize >= 910 || windowSize >= 768) {
-            setVisibleCards(movies.slice(0, (visibleCards.length + moreOnMid)))
-            if (movies.length - visibleCards.length <= moreOnMid) {
+        } else if (windowSize <= 1279 || windowSize >= 768) {
+            setVisibleCards(movies.slice(0, (visibleCards.length + constants.MORE_MOVIE_ON_PAGE_COUNT.MID)))
+            if (movies.length - visibleCards.length <= constants.MORE_MOVIE_ON_PAGE_COUNT.MID) {
                 setMoreButtonVisibility(false);
             }
         } else if (windowSize >= 770 || windowSize >= 320) {
-            setVisibleCards(movies.slice(0, (visibleCards.length + moreOnSmall)))
-            if (movies.length - visibleCards.length <= moreOnSmall) {
+            setVisibleCards(movies.slice(0, (visibleCards.length + constants.MORE_MOVIE_ON_PAGE_COUNT.SMALL)))
+            if (movies.length - visibleCards.length <= constants.MORE_MOVIE_ON_PAGE_COUNT.SMALL) {
                 setMoreButtonVisibility(false);
             }
         }

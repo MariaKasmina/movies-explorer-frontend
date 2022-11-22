@@ -1,9 +1,8 @@
 import {useEffect, useState} from "react";
 import TextError from "../Error/TextError";
 
-function SearchForm({handleValidSearch, handleShortMeter, needToSaveQueryValue}) {
-
-    const [shortMeterTumbler, setShortMeterTumbler] = useState(JSON.parse(localStorage.getItem('isshortmeter')) || false);
+function SearchForm({handleValidSearch, handleShortMeter, needToSaveQueryValue, needToSaveShortMovieTumblerState}) {
+    const [shortMeterTumbler, setShortMeterTumbler] = useState(false);
     const [searchInputValue, setSearchInputValue] = useState('');
     const [validInputValue, setValidInputValue] = useState(false);
     const [errorVisibility, setErrorVisibility] = useState(false);
@@ -12,6 +11,11 @@ function SearchForm({handleValidSearch, handleShortMeter, needToSaveQueryValue})
         if(needToSaveQueryValue) {
             if (localStorage.getItem('query') !== null) {
                 setSearchInputValue(localStorage.getItem('query'));
+            }
+        }
+        if(needToSaveShortMovieTumblerState){
+            if(localStorage.getItem('isshortmeter') !== null){
+                setShortMeterTumbler(JSON.parse(localStorage.getItem('isshortmeter')));
             }
         }
     },[]);
@@ -32,7 +36,12 @@ function SearchForm({handleValidSearch, handleShortMeter, needToSaveQueryValue})
         } else {
             setValidInputValue(true);
             setErrorVisibility(false);
-            localStorage.setItem('query', searchInputValue);
+            if(needToSaveQueryValue) {
+                localStorage.setItem('query', searchInputValue);
+            }
+            if(needToSaveShortMovieTumblerState){
+                localStorage.setItem('isshortmeter', JSON.stringify(shortMeterTumbler));
+            }
             handleValidSearch(searchInputValue);
         }
     }

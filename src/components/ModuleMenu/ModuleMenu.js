@@ -3,7 +3,7 @@ function ModuleMenu({page}){
       <div className='module' id='modulemenu'>
           <section className='module-menu__container'>
               <div className='menu__links'>
-                  <a className='menu-item-link menu-item' href='/'>Главная</a>
+                  <a className={`menu-item-link menu-item ${(page === '/') ? 'has-bottom-border-black' : ''}`} href='/'>Главная</a>
                   <a className={`menu-item-link menu-item ${(page === '/movies') ? 'has-bottom-border-black' : ''}`} href='/movies'>Фильмы</a>
                   <a className={`menu-item-link menu-item ${(page === '/saved-movies') ? 'has-bottom-border-black' : ''}`} href='/saved-movies'>Сохранённые фильмы</a>
               </div>

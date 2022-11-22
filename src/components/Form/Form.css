@@ -43,6 +43,7 @@
   line-height: 17px;
   height: 45px;
   width: 100%;
+  cursor: pointer;
 }
 
 .form__submit-btn:disabled {

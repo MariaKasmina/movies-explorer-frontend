@@ -15,7 +15,7 @@
   color: black;
 }
 
-.navigation__link:first-child {
+.navigation__link-active{
   font-weight: 500;
 }
 
@@ -24,11 +24,11 @@
   background-repeat: no-repeat;
   background-position: center;
   background-color: white;
-  border: none;
   width: 100px;
   height: 32px;
   cursor: pointer;
   margin-right: 38px;
+  border-radius: 21px;
 }
 
 .navigation__menu-button {

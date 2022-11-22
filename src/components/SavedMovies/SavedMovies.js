@@ -71,6 +71,7 @@ function SavedMovies({path, children}) {
                     handleValidSearch={handleSearch}
                     handleShortMeter={shortMeterHandle}
                     needToSaveQueryValue={false}
+                    needToSaveShortMovieTumblerState={false}
                 />
                 <MoviesCardList
                     movies={(isShortMeter) ? shortMeterMovies : visibleCards}

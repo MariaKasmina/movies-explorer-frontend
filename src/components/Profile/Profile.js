@@ -19,7 +19,6 @@ function Profile({children, onLogout, onHandleChange, successRequest}) {
     const emailPattern = '[a-z0-9]+@[a-z]+\\.[a-z]{2,3}';
 
     useEffect(() => {
-        console.log('in effect')
         if(currentUser){
             if(name === "" || email === "") {
                 setName(currentUser.name)
@@ -87,7 +86,7 @@ function Profile({children, onLogout, onHandleChange, successRequest}) {
                             аккаунта</a>
                     </div>
                 </form>
-                <TextError text={'Произошла ошибка. Попробуйте позже.'} visibility={errorMessageVisibility}/>
+                <TextError text={'При отпрвке запроса произошла ошибка.'} visibility={errorMessageVisibility}/>
                 <SuccessActionResult text={'Данные изменены успешно!'} visibility={successMessageVisibility}/>
             </section>
             <ModuleMenu page='movies'/>

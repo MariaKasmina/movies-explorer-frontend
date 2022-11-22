@@ -54,6 +54,7 @@ function App() {
 
     /**
      * Обработка регистрации пользователя
+     * @param name
      * @param password
      * @param email
      */
@@ -82,6 +83,7 @@ function App() {
                 setIsLoggedIn(true);
             }).catch(() => {
                 setIsLoggedIn(false);
+                localStorage.clear();
                 history.push("/sign-in");
             })
         }

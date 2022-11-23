@@ -80,7 +80,7 @@ function Profile({children, onLogout, onHandleChange, successRequest}) {
                     </div>
                     <span className='form__input-error profile-email-input-error'></span>
                     <div className='profile__buttons'>
-                        <button type='submit' className='profile__button profile__edit-btn' onClick={handleClick}>Редактировать
+                        <button type='submit' className='profile__button profile__edit-btn' onClick={handleClick} disabled={isChangeFormVisible}>Редактировать
                         </button>
                         <a className='profile__button profile__sign-out-btn' href='/' onClick={onLogout}>Выйти из
                             аккаунта</a>

@@ -28,28 +28,26 @@ function Movies({path, children}) {
     }, []);
 
     useEffect(() => {
-        // если в localstorage еще нет сохраненной сущности со списком всех фильмов, необходимо сделать такой запрос
-        if (!localStorage.getItem('allMovies')) {
-            Promise.all([moviesApi.getAllMovies()]).then(([movies]) => {
-                setMovies(movies);
-                localStorage.setItem('allMovies', JSON.stringify(movies));
-            });
-        }
-    }, []);
+        console.log(isPreloaderVisible)
+    }, [isPreloaderVisible])
 
     useEffect(() => {
-        setFilteredMovies(moviesFilter(movies, searchQuery));
-        localStorage.setItem('collection', JSON.stringify(filteredMovies));
-        setIsShortMeterToLocalStorage();
-        setIsPreloaderVisible(false)
+        if(localStorage.getItem('allMovies')) {
+            setFilteredMovies(moviesFilter(movies, searchQuery));
+            localStorage.setItem('collection', JSON.stringify(filteredMovies));
+            setIsShortMeterToLocalStorage();
+            setIsPreloaderVisible(false);
+        }
     }, [movies]);
 
     useEffect(() => {
-        setIsPreloaderVisible(true);
-        if (localStorage.getItem('query')) {
-            setFilteredMovies(moviesFilter((movies.length) ? movies : JSON.parse(localStorage.getItem('allMovies')), localStorage.getItem('query')));
-        } else setFilteredMovies(moviesFilter(movies, searchQuery));
-        localStorage.setItem('collection', JSON.stringify(filteredMovies));
+        if(localStorage.getItem('allMovies')) {
+            setIsPreloaderVisible(true);
+            if (localStorage.getItem('query')) {
+                setFilteredMovies(moviesFilter((movies.length) ? movies : JSON.parse(localStorage.getItem('allMovies')), localStorage.getItem('query')));
+            } else setFilteredMovies(moviesFilter(movies, searchQuery));
+            localStorage.setItem('collection', JSON.stringify(filteredMovies));
+        }
     }, [searchQuery]);
 
     useEffect(() => {
@@ -69,11 +67,26 @@ function Movies({path, children}) {
         setIsEmptySearchResult(false);
         setSearchQuery(searchQuery);
         setIsPreloaderVisible(true);
-        setFilteredMovies(moviesFilter(movies, searchQuery)); // фильтруем фильмы по запросу
-        localStorage.setItem('collection', JSON.stringify(filteredMovies));
-        if (isShortMeter) {
-            setShortMeterFilms(shortMeterFilter(filteredMovies));
-            localStorage.setItem('shortmovies', JSON.stringify(shortMeterFilms));
+        if (!localStorage.getItem('allMovies')) {
+            Promise.all([moviesApi.getAllMovies()]).then(([res]) => {
+                setMovies(res);
+                localStorage.setItem('allMovies', JSON.stringify(res));
+                const filteredItems = moviesFilter(res, searchQuery);
+                setFilteredMovies(filteredItems); // фильтруем фильмы по запросу
+                localStorage.setItem('collection', JSON.stringify(filteredItems));
+                if (isShortMeter) {
+                    const shortItems = shortMeterFilter(filteredItems);
+                    setShortMeterFilms(shortItems);
+                    localStorage.setItem('shortmovies', JSON.stringify(shortItems));
+                }
+            });
+        } else {
+            setFilteredMovies(moviesFilter(movies, searchQuery)); // фильтруем фильмы по запросу
+            localStorage.setItem('collection', JSON.stringify(filteredMovies));
+            if (isShortMeter) {
+                setShortMeterFilms(shortMeterFilter(filteredMovies));
+                localStorage.setItem('shortmovies', JSON.stringify(shortMeterFilms));
+            }
         }
     }
 

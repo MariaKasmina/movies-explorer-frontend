@@ -41,14 +41,18 @@ function MoviesCard({movie, image, onSavedPage, onClossBtnClick}) {
                 year: movie.year,
                 thumbnail: `https://api.nomoreparties.co/uploads/${movie.image.formats.thumbnail.url}`
             }
-            addSavedMovie(reqBody).then(() => {
+            addSavedMovie(reqBody).then((res) => {
+                let saved = Array.from(JSON.parse(localStorage.getItem('savedMovies')));
+                const savedModified = saved.concat(res);
+                localStorage.setItem('savedMovies', JSON.stringify(savedModified));
                 setHeartState(true);
             }).catch((res) => console.log(res))
         } else {
             const index = JSON.parse(localStorage.getItem('savedMovies')).filter((item) => item.movieId === movie.id)[0]._id;
             removeMovieFromSavedMovies(index).then(() => {
                 setHeartState(false);
-            })
+                localStorage.setItem('savedMovies', JSON.stringify(JSON.parse(localStorage.getItem('savedMovies')).filter((item) => item.movieId !== movie.id)))
+            }).catch((err) => console.log(err));
         }
     }
 
@@ -56,19 +60,20 @@ function MoviesCard({movie, image, onSavedPage, onClossBtnClick}) {
         handleHeartClick(heartState, movie);
     }
 
-    function onCrossClick(){
+    function onCrossClick() {
         onClossBtnClick(movie);
     }
 
     return (
         <figure className={"card"}>
             <a href={movie.trailerLink} target={"_blank"}>
-            <img className="card__image" src={image} alt="фильм"/>
+                <img className="card__image" src={image} alt="фильм"/>
             </a>
             <figcaption className="card__caption">
                 <h3 className="card__caption-text">{movie.nameRU}</h3>
                 {(!onSavedPage) ? <button type="button"
-                                          className={heartState ? 'card__heart' : 'unliked__heart'} onClick={onHeartClick}
+                                          className={heartState ? 'card__heart' : 'unliked__heart'}
+                                          onClick={onHeartClick}
                     /> :
                     <button type="button" className='card__cross' onClick={onCrossClick}/>}
                 <p className='card__time'>{parseTime(movie.duration)}</p>

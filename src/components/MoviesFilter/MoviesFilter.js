@@ -26,7 +26,6 @@ export const moviesEnFilter = (movies, query) => {
             indexArray += 1;
         }
     });
-
     return map;
 }
 

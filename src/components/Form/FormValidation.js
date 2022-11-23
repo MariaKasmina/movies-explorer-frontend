@@ -23,6 +23,7 @@ export function checkValidity(event) {
 export function checkProfileFormValidity(event, name, email) {
     const data = getDataAboutValidity(event);
     const formNode = event.target.form;
+    console.log(data)
     if (!data.validity) {
         event.target.closest('form').querySelector(`span.${data.name}-error`).innerText = data.errors[data.name];
         formNode.querySelector('button').disabled = !data.validity;

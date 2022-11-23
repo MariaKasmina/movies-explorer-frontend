@@ -28,7 +28,7 @@ function MoviesCardList({movies, emptyResult, onRemoveMovies}) {
 
     function windowWidthHandler() {
         let cards = [];
-        if (windowSize >= 1280) {
+        if (windowSize >= constants.CHANGE_POINTS.WIDE) {
             cards = movies.slice(0, constants.MOVIES_ON_PAGE_COUNT.WIDE);
 
             if (cards.length < movies.length) {
@@ -36,7 +36,7 @@ function MoviesCardList({movies, emptyResult, onRemoveMovies}) {
             } else setMoreButtonVisibility(false);
 
             setVisibleCards(cards);
-        } else if (windowSize <= 1279 || windowSize >= 768) {
+        } else if (windowSize <= constants.CHANGE_POINTS.MID.START || windowSize >= constants.CHANGE_POINTS.MID.END) {
             cards = movies.slice(0, constants.MOVIES_ON_PAGE_COUNT.MID);
 
             if (cards.length < movies.length) {
@@ -44,7 +44,7 @@ function MoviesCardList({movies, emptyResult, onRemoveMovies}) {
             } else setMoreButtonVisibility(false);
 
             setVisibleCards(cards);
-        } else if (windowSize >= 770 || windowSize >= 320) {
+        } else if (windowSize >= constants.CHANGE_POINTS.SMALL.START || windowSize >= constants.CHANGE_POINTS.SMALL.END) {
             cards = movies.slice(0, constants.MOVIES_ON_PAGE_COUNT.SMALL);
 
             if (cards.length < movies.length) {
@@ -58,17 +58,17 @@ function MoviesCardList({movies, emptyResult, onRemoveMovies}) {
     function handleMoreButtonClick() {
         // когда нажали, должны в зависимости от текущей ширины экрана показать 3 или 2 новых карточки
         // когда длины массивов cards и movies сравняются или разница их блин будет <= шагу на текущей ширине экрана, кнопку необходимо убрать
-        if (windowSize >= 1280) {
+        if (windowSize >= constants.CHANGE_POINTS.WIDE) {
             setVisibleCards(movies.slice(0, (visibleCards.length + constants.MORE_MOVIE_ON_PAGE_COUNT.WIDE)))
             if (movies.length - visibleCards.length <= constants.MORE_MOVIE_ON_PAGE_COUNT.WIDE) {
                 setMoreButtonVisibility(false);
             }
-        } else if (windowSize <= 1279 || windowSize >= 768) {
+        } else if (windowSize <= constants.CHANGE_POINTS.MID.START || windowSize >= constants.CHANGE_POINTS.MID.END) {
             setVisibleCards(movies.slice(0, (visibleCards.length + constants.MORE_MOVIE_ON_PAGE_COUNT.MID)))
             if (movies.length - visibleCards.length <= constants.MORE_MOVIE_ON_PAGE_COUNT.MID) {
                 setMoreButtonVisibility(false);
             }
-        } else if (windowSize >= 770 || windowSize >= 320) {
+        } else if (windowSize >= constants.CHANGE_POINTS.SMALL.START || windowSize >= constants.CHANGE_POINTS.SMALL.END) {
             setVisibleCards(movies.slice(0, (visibleCards.length + constants.MORE_MOVIE_ON_PAGE_COUNT.SMALL)))
             if (movies.length - visibleCards.length <= constants.MORE_MOVIE_ON_PAGE_COUNT.SMALL) {
                 setMoreButtonVisibility(false);

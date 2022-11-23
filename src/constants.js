@@ -12,6 +12,18 @@ const constants = {
         MID: 2,
         SMALL: 2,
     },
+    // точки, когда количество отображаемых и добавляемых карточек меняется
+    CHANGE_POINTS: {
+        WIDE: 1280,
+        MID: {
+            START: 1279,
+            END: 768,
+        },
+        SMALL: {
+            START: 770,
+            END: 320,
+        }
+    }
 };
 
 module.exports = {

@@ -27,6 +27,7 @@ function App() {
             Promise.all([getUserInfo(), getSavedMovies()]).then(([userInfo, savedMovies]) => {
                 userInfo.liked = savedMovies;
                 setCurrentUser(userInfo);
+                localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
             }).catch((err) => {
                 console.log(err);
             })
